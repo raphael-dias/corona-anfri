@@ -3,7 +3,11 @@ import React from "react";
 import { Container } from "./styles";
 
 function Footer() {
-  return <div />;
+  return (
+    <Container>
+      <p>Made with React</p>
+    </Container>
+  );
 }
 
 export default Footer;

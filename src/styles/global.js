@@ -20,6 +20,7 @@ html, body, #root {
 
   body {
     -webkit-font-smoothing: antialiased;
+    background: #eeeeee; 
   }
 
   body, input, button {

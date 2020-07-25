@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <GlobalStyle />
       <header className="App-header">
-        <a>Teste</a>
+        <p>Teste</p>
       </header>
     </div>
   );

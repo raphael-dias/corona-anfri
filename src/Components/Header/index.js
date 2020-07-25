@@ -1,9 +1,12 @@
 import React from "react";
-
-// import { Container } from './styles';
+import { Container, Content, Image } from "./styles";
 
 function Header() {
-  return <div />;
+  return (
+    <Container>
+      <Content>Covid-19 AMFRI</Content>
+    </Container>
+  );
 }
 
 export default Header;

@@ -29,4 +29,7 @@ export const Segment = styled.div`
   }
 `;
 
-export const Section = styled.div``;
+export const Section = styled.div`
+  margin-top: -500px;
+  height: 60px;
+`;

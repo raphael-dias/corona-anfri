@@ -2,12 +2,12 @@ import React from "react";
 
 import { Container } from "./styles";
 
-function Footer() {
+function Dados() {
   return (
     <Container>
-      <p>Made with React</p>
+      <section></section>
     </Container>
   );
 }
 
-export default Footer;
+export default Dados;

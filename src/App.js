@@ -2,7 +2,6 @@ import React from "react";
 import GlobalStyle from "./styles/global";
 import Header from "./Components/Header";
 import Main from "./Components/Main";
-import Footer from "./Components/Footer";
 import DataHoraProvider from "./Context/DataHora";
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
         <GlobalStyle />
         <Header />
         <Main />
-        <Footer />
       </div>
     </DataHoraProvider>
   );

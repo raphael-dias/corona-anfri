@@ -17,6 +17,7 @@ export const Segment = styled.div`
   font-family: Oswald;
   line-height: 1;
   text-align: center;
+  padding-top: 10px;
   strong {
     margin: 30px;
   }

@@ -39,5 +39,4 @@ html, body, #root {
     cursor: pointer;
   }
 }
-
 `;

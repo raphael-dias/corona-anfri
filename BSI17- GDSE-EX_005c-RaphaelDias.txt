@@ -1,0 +1,160 @@
+1. Escreva uma consulta XPath que apresente o nome do programa 
+(“Luz para Todos”) e a descrição dos dados apresentados no 
+referido arquivo (tag descricao). 
+
+R: let $x := doc("GDSE-Aula005c-Exercicio-LuzParaTodos-60.xml")/data/serie_historica/metadado
+return ($x/grupo_informacao/nome, $x/descricao)
+
+
+2. Escreva uma consulta XPath que apresente os dados 
+(região/pessoas atendidas) do programa, referentes ao ano 2004. 
+
+R: for $x in doc("GDSE-Aula005c-Exercicio-LuzParaTodos-60.xml")/data/serie_historica/dados/dado[ano<2005]
+
+return $x
+
+3. Escreva uma consulta XPath que apresente os dados do último 
+registro da série (usando a função last() como predicado). 
+R: let $x := doc("GDSE-Aula005c-Exercicio-LuzParaTodos-60.xml")/data/serie_historica/dados/dado
+let $lastElement := $x[last()]
+return $lastElement
+
+4. Escreva uma consulta XPath que apresente a região de todos os 
+registros do ano de 2010 em que foram atendidas mais de 246000 
+pessoas. 
+
+R: let $x := doc("GDSE-Aula005c-Exercicio-LuzParaTodos-60.xml")/data/serie_historica/dados/dado[valor>246000]
+let $i :=$x[ano>2009]
+where $i
+return $i
+
+
+5. Escreva uma consulta XPath que apresente os dados de 
+atendimento do estado de Santa Catarina (codibge = 42). 
+R: let $x := doc("GDSE-Aula005c-Exercicio-LuzParaTodos-60.xml")/data/serie_historica/dados/dado[codibge=42]
+return $x
+
+6. Utilizando expressão FLWOR, escreva uma consulta XQuery que 
+apresente os dados do estado de Santa Catarina no programa, 
+referentes ao ano 2009. Apresente o resultado como uma lista 
+HTML (<li>Estado: ?? – Ano: ???? - Valor: ??? </li>). 
+R: let $x := doc("GDSE-Aula005c-Exercicio-LuzParaTodos-60.xml")/data/serie_historica/dados/dado[codibge=42]
+for $y in $x[ano=2009]
+return 
+<ul>{
+  <li>{data("Estado: Santa Catarina")}</li>,
+  <li>Ano: {data($y/ano)}</li>,
+  <li>Valor: {data($y/valor)}</li>
+  
+
+7. Utilizando expressões FLWOR, escreva DUAS consultas XQuery que 
+gerem um relatório em XML, ordenado por Estado/Ano, conforme a 
+estrutura a seguir: 
+ Programa/Descrição (CABEÇALHO) 
+ Estado/Ano/Pessoas atingidas (DADOS) 
+
+R: 
+
+1ª parte do relatorio 
+let $x := doc("GDSE-Aula005c-Exercicio-LuzParaTodos-60.xml")/data/serie_historic
+return 
+$x/metadado/descricao
+
+2ª parte do relatório
+
+let $x := doc("GDSE-Aula005c-Exercicio-LuzParaTodos-60.xml")/data/serie_historica
+let $RO := $x/dados/dado[codibge=11]
+let $AC := $x/dados/dado[codibge=12]
+let $AM := $x/dados/dado[codibge=13]
+let $RR := $x/dados/dado[codibge=14]
+let $PA := $x/dados/dado[codibge=15]
+let $AP := $x/dados/dado[codibge=16]
+let $TO := $x/dados/dado[codibge=17]
+
+let $MA := $x/dados/dado[codibge=21]
+let $PI := $x/dados/dado[codibge=22]
+let $CE := $x/dados/dado[codibge=23]
+let $RN := $x/dados/dado[codibge=24]
+let $PB := $x/dados/dado[codibge=25]
+let $PE := $x/dados/dado[codibge=26]
+let $AL := $x/dados/dado[codibge=27]
+let $SE := $x/dados/dado[codibge=28]
+let $BA := $x/dados/dado[codibge=29]
+ 
+let $MG := $x/dados/dado[codibge=31]
+let $ES := $x/dados/dado[codibge=32]
+let $RJ := $x/dados/dado[codibge=33]
+let $SP := $x/dados/dado[codibge=35]
+ 
+let $PR := $x/dados/dado[codibge=41]
+let $SC := $x/dados/dado[codibge=42]
+let $RS := $x/dados/dado[codibge=43]
+
+let $MS := $x/dados/dado[codibge=50] 
+let $MT := $x/dados/dado[codibge=51] 
+let $GO := $x/dados/dado[codibge=52] 
+let $DF := $x/dados/dado[codibge=53] 
+ 
+return 
+(
+data(<estado>Estado: RO </estado>),$RO, 
+data(<estado>Estado: AC </estado>),$AC,
+data(<estado>Estado: AM </estado>),$AM,
+data(<estado>Estado: RR </estado>),$RR,
+data(<estado>Estado: PA </estado>),$PA,
+data(<estado>Estado: AP </estado>),$AP,
+data(<estado>Estado: TO </estado>),$TO,
+data(<estado>Estado: MA </estado>),$MA,
+data(<estado>Estado: PI </estado>),$PI,
+data(<estado>Estado: SE </estado>),$SE,
+data(<estado>Estado: RN </estado>),$RN,
+data(<estado>Estado: PB </estado>),$PB,
+data(<estado>Estado: PE </estado>),$PE,
+data(<estado>Estado: AL </estado>),$AL,
+data(<estado>Estado: SE </estado>),$SE,
+data(<estado>Estado: BA </estado>),$BA,
+data(<estado>Estado: MG </estado>),$MG,
+data(<estado>Estado: ES </estado>),$ES,
+data(<estado>Estado: RJ </estado>),$RJ,
+data(<estado>Estado: SP </estado>),$SP,
+data(<estado>Estado: PR </estado>),$PR,
+data(<estado>Estado: SC </estado>),$SC,
+data(<estado>Estado: RS </estado>),$RS,
+data(<estado>Estado: MS </estado>),$MS,
+data(<estado>Estado: MT </estado>),$MT,
+data(<estado>Estado: GO </estado>),$GO,
+data(<estado>Estado: DF </estado>),$DF) 
+
+
+8. Utilizando expressões FLWOR, escreva uma consulta XQuery que 
+apresente o nome de todos os Estados em que, no ano de 2010, 
+foram atendidas mais de 246000 pessoas. 
+
+R: let $x := doc("GDSE-Aula005c-Exercicio-LuzParaTodos-60.xml")/data/serie_historica/dados/dado[valor>246000]
+for $y in $x[ano=2010]
+return 
+$y/codibge
+
+9. Escreva uma DTD para validar o subconjunto de DADOS do arquivo 
+XML criado na questão 7, acima. 
+As respostas devem ser colocadas em um arquivo texto, nomeado como 
+EXERCICIO_005b-Turma-SeuNome, o qual será enviado conforme instruções do 
+professor
+
+R: <?xml encoding="UTF-8"?>
+
+<!ELEMENT dado (ano,codibge,valor)>
+<!ATTLIST dado
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT ano (#PCDATA)>
+<!ATTLIST ano
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT codibge (#PCDATA)>
+<!ATTLIST codibge
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT valor (#PCDATA)>
+<!ATTLIST valor
+  xmlns CDATA #FIXED ''>
